@@ -19,7 +19,7 @@ class LambertEstConverter
   @@epsilon = 1e-11
 
 
-  def self.toLatLng(px, py)
+  def self.to_lat_lng(px, py)
     r = Math.sqrt((px - @@ef) ** 2 + (@@rf - py + @@nf) ** 2 ) * 1 # Math.signum(@@n)
     t = (r / (@@a * @@f)) ** (1.0 / @@n)
     theta = Math.atan((px - @@ef) / (@@rf - py + @@nf))

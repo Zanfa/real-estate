@@ -11,6 +11,8 @@ describe ListingScraper do
     listing[:pictures].count.should eq 10
     listing[:pictures].first.should eq 'http://cache.kv.ee/iv2/obj/1_4_37026443.jpg'
     listing[:pictures].last.should eq 'http://cache.kv.ee/iv2/obj/1_4_37026453.jpg'
+    expect(listing[:coords][:lat]).to eq 58.37508163737743
+    expect(listing[:coords][:lng]).to eq 26.73310669898496
     listing[:kv_id].should eq '2186215'
   end
 
@@ -19,6 +21,13 @@ describe ListingScraper do
     listing = ListingScraper.parse(html)
 
     expect(listing[:price]).to eq 127.82
+  end
+
+  it 'works without a map being in the listing' do
+    html = File.open('spec/fixtures/listing_no_map.html').read
+    listing = ListingScraper.parse(html)
+
+    expect(listing[:coords]).to eq({})
   end
 
 end
