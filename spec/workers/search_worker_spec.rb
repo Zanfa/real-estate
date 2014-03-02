@@ -8,9 +8,9 @@ describe SearchWorker do
   it 'should GET listings for Tartu and Tallinn' do
 
     # Set up all endpoints
-    tartu_request = stub_request(:get, 'http://www.kv.ee/?act=search.simple&page_size=1000&deal_type=2&county=12&parish=450').to_return(status: 200, body: tartu_response)
+    tartu_request = stub_request(:get, 'http://www.kv.ee/?act=search.simple&page_size=10000&deal_type=2&county=12&parish=450').to_return(status: 200, body: tartu_response)
 
-    tallinn_request = stub_request(:get, 'http://www.kv.ee/?act=search.simple&page_size=1000&deal_type=2&county=1&parish=421').to_return(status: 200, body: tallinn_response)
+    tallinn_request = stub_request(:get, 'http://www.kv.ee/?act=search.simple&page_size=10000&deal_type=2&county=1&parish=421').to_return(status: 200, body: tallinn_response)
 
     # Keep track of all requests for later
     request_stubs = [tartu_request, tallinn_request]
