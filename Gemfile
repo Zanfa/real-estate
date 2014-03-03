@@ -45,6 +45,9 @@ end
 gem 'nokogiri'
 gem 'resque'
 
+gem 'rgeo'
+gem 'activerecord-postgis-adapter'
+
 group :development, :test do 
   gem 'debugger'
 

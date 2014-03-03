@@ -10,6 +10,7 @@ class ListingWorker
       listing.title = listing_hash[:title]
       listing.price = listing_hash[:price]
       listing.pictures = listing_hash[:pictures]
+      listing.coords = listing_hash[:coords]
       saved = listing.save
     end
   end

@@ -11,18 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302172959) do
+ActiveRecord::Schema.define(version: 20140303181733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "listings", force: true do |t|
     t.string   "title"
-    t.decimal  "price",      precision: 10, scale: 2
+    t.decimal  "price",                                            precision: 10, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "pictures",                            array: true
+    t.string   "pictures",                                                                  array: true
     t.string   "kv_id"
+    t.spatial  "coords",     limit: {:srid=>3785, :type=>"point"}
   end
 
 end

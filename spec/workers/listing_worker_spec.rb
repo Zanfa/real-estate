@@ -10,7 +10,11 @@ describe ListingWorker do
         title: 'Korter', 
         price: 100, 
         pictures: [],
-        kv_id: '12345'
+        kv_id: '12345',
+        coords: {
+          lat: 59.435516111116904,
+          lng: 24.775289392049288
+        }
       }
  }
 
@@ -30,6 +34,7 @@ describe ListingWorker do
     ListingScraper.should_receive(:parse).with(response).twice { listing_hash }
     ListingWorker.perform url
     ListingWorker.perform url
+    debugger
 
     Listing.all.count.should eq 1
   end
