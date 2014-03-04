@@ -30,6 +30,25 @@ describe ListingsController do
   # ListingsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  describe "GET rect" do
+    before :each do
+      @listing1 = Listing.create(coords: {lat: 59.435273,lng: 24.704304})
+      @listing2 = Listing.create(coords: {lat: 59.427415,lng: 24.822063})
+    end
+
+    it 'finds all listings in a rect' do
+      get :rect, {sw_lat: '59,395269', sw_lng: '24,661732', ne_lat: '59,467702', ne_lng: '24,857597'}, valid_session
+
+      assigns(:listings).should eq([@listing1, @listing2])
+    end
+
+    it 'finds no listings outside' do
+      get :rect, {sw_lat: '59,272087', sw_lng: '24,770737', ne_lat: '59,349886', ne_lng: '25,033035'}, valid_session
+
+      assigns(:listings).should eq([])
+    end
+  end
+
   describe "GET index" do
     it "assigns all listings as @listings" do
       listing = Listing.create! valid_attributes

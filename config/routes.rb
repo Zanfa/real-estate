@@ -1,5 +1,9 @@
 Kinnisvara::Application.routes.draw do
-  resources :listings
+  resources :listings do
+    collection do
+      get 'rect/:sw_lat/:sw_lng/:ne_lat/:ne_lng' => 'listings#rect'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

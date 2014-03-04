@@ -34,7 +34,6 @@ describe ListingWorker do
     ListingScraper.should_receive(:parse).with(response).twice { listing_hash }
     ListingWorker.perform url
     ListingWorker.perform url
-    debugger
 
     Listing.all.count.should eq 1
   end

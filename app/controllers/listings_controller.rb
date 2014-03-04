@@ -4,7 +4,17 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all
+    # @listings = Listing.all
+  end
+
+  def rect
+    # Incredibly ugly
+    coords = params.slice(:sw_lat, :sw_lng, :ne_lat, :ne_lng).values.map do |coord|
+      coord.sub(',', '.').to_f
+    end
+
+    @listings = Listing.in_rect(coords[0], coords[1], coords[2], coords[3])
+    render 'rect.json.jbuilder'
   end
 
   # GET /listings/1
