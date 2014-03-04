@@ -29,3 +29,12 @@
 <br>
 
 <%= link_to 'New Listing', new_listing_path %>
+
+<style>
+  body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+<div ng-controller="TestController">
+  <button ng-click="addMarker()">Add</button>
+<leaflet defaults="defaults" center="center" markers="markers" height="480px" width="640px"></leaflet>
+</div>

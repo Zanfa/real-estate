@@ -7,6 +7,10 @@ class Listing < ActiveRecord::Base
     write_attribute(:coords, GEOFACTORY.point(coords[:lat], coords[:lng]).projection)
   end
 
+  def coords
+    GEOFACTORY.unproject(read_attribute(:coords))
+  end
+
   def self.in_rect(w, s, e, n)
     sw = GEOFACTORY.point(w, s).projection
     ne = GEOFACTORY.point(e, n).projection
